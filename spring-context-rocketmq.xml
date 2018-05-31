@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="mqProducer" class="com.yxkj.platform.event.YxMqProducer"
+          init-method="init"
+          destroy-method="destroy"
+          scope="singleton">
+        <property name="producerGroup" value="MyProducerGroup"/>
+        <property name="namesrvAddr" value="${rocketmq.address}"/>
+    </bean>
+
+    <bean id="mqConsumer" class="com.yxkj.platform.event.YxMqConsumer"
+          init-method="init"
+          destroy-method="destroy"
+          scope="singleton">
+        <property name="consumerGroup" value="MyConsumerGroup"/>
+        <property name="namesrvAddr" value="${rocketmq.address}"/>
+    </bean>
+
+</beans>
